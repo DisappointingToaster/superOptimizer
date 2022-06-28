@@ -10,26 +10,28 @@ using namespace std;
 
 class items {
 private:
-    int aether;
-    int earth;
-    int water;
-    int order;
-    int fire;
-    int death;
     string name;
     int elements[6];
 public:
-    items(string n ,int a, int e, int w, int o, int f, int d) {
-        name = n;
-        elements[0] = a;
-        elements[1] = e;
-        elements[2] = w;
-        elements[3] = o;
-        elements[4] = f;
-        elements[5] = d;
+    items(vector<string>&test) {
+        for (int i = 0; i < 7; i++) {
+            if (i == 0) {
+                name = test[i];
+            }
+            else {
+                int localint;
+                stringstream ss;
+                ss << test[i];
+                ss >> localint;
+                elements[i-1] = localint;
+            } 
+        }
     }
     int * getElements() {
         return elements;
+    }
+    string getName() {
+        return name;
     }
 };
 
@@ -46,16 +48,16 @@ vector<string> split(const string& s, char delim) {
 }
 
 
-void createItemObjects() {
+void createItemObjects(vector<items>& localItems) {
     ifstream myFile;
     myFile.open("ItemElements.csv");
     char desturctor = ';';
     vector<string>v;
     string line;
+    getline(myFile, line);
     while (getline(myFile, line)) {
         v = split(line, desturctor);
-        for (int i = 0; i < 7;i++) 
-            cout << v[i] << endl;
+        localItems.push_back(items(v));
 
     };
 };
@@ -65,14 +67,20 @@ int main()
 {
     vector<items>reborns;
 
-    createItemObjects();
+    createItemObjects(reborns);
 
-    items testItem("name", 1, 7, 3, 4, 5, 65);
-    cout << *(testItem.getElements() + 5) << endl;
+    cout << reborns[1].getName() << " elements: " << endl;
+    for (int i = 0; i < 6; i++) {
+        cout<<*(reborns[1].getElements() + i)<<" ";
+    };
+
+    cout <<endl<< *(reborns[1].getElements() + 0) + *(reborns[1].getElements() + 2);
+    //items testItem("name", 1, 7, 3, 4, 5, 65);
+    //cout << *(testItem.getElements() + 5) << endl;
     
-    items testItem2("test2", 1, 2, 3, 4, 5, 146);
-    cout << *(testItem2.getElements() + 5) << endl;
-    cout << *(testItem.getElements() + 5) << endl;
+    //items testItem2("test2", 1, 2, 3, 4, 5, 146);
+    //cout << *(testItem2.getElements() + 5) << endl;
+    //cout << *(testItem.getElements() + 5) << endl;
 
 
 }
