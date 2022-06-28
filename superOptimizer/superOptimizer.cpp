@@ -8,8 +8,6 @@
 using namespace std;
 
 
-
-
 class items {
 private:
     int aether;
