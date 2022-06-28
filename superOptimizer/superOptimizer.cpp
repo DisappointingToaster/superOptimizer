@@ -10,7 +10,7 @@ using namespace std;
 
 
 
-class itemE {
+class items {
 private:
     int aether;
     int earth;
@@ -21,7 +21,7 @@ private:
     string name;
     int elements[6];
 public:
-    itemE(string n ,int a, int e, int w, int o, int f, int d) {
+    items(string n ,int a, int e, int w, int o, int f, int d) {
         name = n;
         elements[0] = a;
         elements[1] = e;
@@ -48,27 +48,31 @@ vector<string> split(const string& s, char delim) {
 }
 
 
-int main()
-{
+void createItemObjects() {
     ifstream myFile;
     myFile.open("ItemElements.csv");
     char desturctor = ';';
     vector<string>v;
-
-    while (myFile.good()) {
-        string line;
-        getline(myFile, line);
-        cout << line<<endl;
+    string line;
+    while (getline(myFile, line)) {
         v = split(line, desturctor);
-        for (auto i : v) cout << i << endl;
+        for (int i = 0; i < 7;i++) 
+            cout << v[i] << endl;
 
     };
+};
 
 
-    itemE testItem("name", 1, 7, 3, 4, 5, 65);
+int main()
+{
+    vector<items>reborns;
+
+    createItemObjects();
+
+    items testItem("name", 1, 7, 3, 4, 5, 65);
     cout << *(testItem.getElements() + 5) << endl;
     
-    itemE testItem2("test2", 1, 2, 3, 4, 5, 146);
+    items testItem2("test2", 1, 2, 3, 4, 5, 146);
     cout << *(testItem2.getElements() + 5) << endl;
     cout << *(testItem.getElements() + 5) << endl;
 
