@@ -4,8 +4,11 @@
 #include <fstream>
 #include <string>
 #include <sstream>
+#include <random>
+#include <algorithm>
 
 using namespace std;
+
 
 
 class items {
@@ -27,7 +30,7 @@ public:
             } 
         }
     }
-    int * getElements() {
+    int  *getElements() {
         return elements;
     }
     string getName() {
@@ -35,6 +38,9 @@ public:
     }
 };
 
+
+
+//ObjectInitializer from CSV
 vector<string> split(const string& s, char delim) {
     vector<string> result;
     stringstream ss(s);
@@ -63,25 +69,93 @@ void createItemObjects(vector<items>& localItems) {
 };
 
 
+
+struct itemHolder{
+
+    int test1;
+    items* test2;
+    
+};
+
+
+bool notEnoughItems( const int expectedElements[], int currentEl[]) {
+    for (int i = 0; i < 6; i++) {
+        if (expectedElements[i] != 0) {
+            if (currentEl[i] < expectedElements[i]) {
+                return true;
+            }
+        }
+
+    }
+    return false;
+}
+
+const int SuperReq[6] = { 35,40,0,5,125,55 };
+
+void selectItems(vector<items>& localreborns) {
+    int currentElements[6] = {0,0,0,0,0,0};
+    vector<itemHolder>currentItems;
+    srand(time(0));
+    
+    while (notEnoughItems(SuperReq, currentElements)) {
+        
+        int randomNumb = rand()%localreborns.size();
+
+        items *testlocal = &localreborns[randomNumb];
+        
+        if (currentItems.empty()) {
+            currentItems.push_back(itemHolder{ 1,testlocal });
+        }
+        else {
+            bool found = false;
+            for (int i = 0; i < currentItems.size(); i++) {
+                if (currentItems[i].test2 == testlocal) {
+                    currentItems[i].test1 += 1;
+                    found = true;
+                    break;
+                }
+            }
+            if (!found) {
+               currentItems.push_back(itemHolder{ 1,testlocal });
+            }
+        }
+        
+        for (int i = 0; i < 6; i++) {
+            currentElements[i] += *(testlocal->getElements()+i);
+        }
+                
+        
+    };
+    
+    cout << endl;
+    int localAmount = 0;
+    cout << "Items stored: " << endl;
+    for (int i = 0; i < currentItems.size(); i++) {
+        cout << currentItems[i].test2->getName() << ": " << currentItems[i].test1 << endl;
+        localAmount += currentItems[i].test1;
+    }
+    cout << "Items needed: " << localAmount << endl;
+    cout << "Elements: ";
+    for (int i = 0; i < 6; i++) {
+        cout << currentElements[i] << " ";
+    }
+}
+
+
 int main()
 {
+
+    //object initialization 
     vector<items>reborns;
-
     createItemObjects(reborns);
-
-    cout << reborns[1].getName() << " elements: " << endl;
-    for (int i = 0; i < 6; i++) {
-        cout<<*(reborns[1].getElements() + i)<<" ";
-    };
-
-    cout <<endl<< *(reborns[1].getElements() + 0) + *(reborns[1].getElements() + 2);
-    //items testItem("name", 1, 7, 3, 4, 5, 65);
-    //cout << *(testItem.getElements() + 5) << endl;
+    selectItems(reborns);
     
-    //items testItem2("test2", 1, 2, 3, 4, 5, 146);
-    //cout << *(testItem2.getElements() + 5) << endl;
-    //cout << *(testItem.getElements() + 5) << endl;
+    
 
+    
+    
+    
+    
 
 }
 
