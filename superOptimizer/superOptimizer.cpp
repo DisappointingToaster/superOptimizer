@@ -59,7 +59,7 @@ vector<string> split(const string& s, char delim) {
 
 void createItemObjects(vector<items>& localItems) {
     ifstream myFile;
-    myFile.open("ItemElements.csv");
+    myFile.open("ItemElements2.csv");
     char desturctor = ';';
     vector<string>v;
     string line;
@@ -95,13 +95,13 @@ bool notEnoughItems( const int expectedElements[], int currentEl[]) {
 
 const int SuperReq[6] = { 35,40,0,5,125,55 };
 
-vector<itemHolder> selectItems(vector<items>& localreborns,int elementcount[]) {
+void selectItems(vector<items>& localreborns,int elementcount[], vector<itemHolder>&currentItems) {
     int currentElements[6];
     for (int i = 0; i < 6; i++) {
         currentElements[i] = elementcount[i];
     }
     
-    vector<itemHolder>currentItems;
+    
     
     
     while (notEnoughItems(SuperReq, currentElements)) {
@@ -135,7 +135,7 @@ vector<itemHolder> selectItems(vector<items>& localreborns,int elementcount[]) {
     };
     
     
-    return currentItems;
+    
 }
 
 int countItems(vector<itemHolder>& countableItems) {
@@ -192,72 +192,100 @@ int main()
 
     while (Solutions.size()<10) {
         
-        finishedProduct = selectItems(reborns, startElements);
+        selectItems(reborns, startElements, finishedProduct);
         fitnessScale test{ fitness(finishedProduct),finishedProduct };
         Solutions.push_back(test);
+        finishedProduct.clear();
     }
-    
+    int generationCounter = 0;
 
+    while(generationCounter<20000){
 
-    sort(Solutions.begin(), Solutions.end(), [](const fitnessScale& a, const fitnessScale& b) {
-        return a.fitnessValue > b.fitnessValue;
-        });
+        sort(Solutions.begin(), Solutions.end(), [](const fitnessScale& a, const fitnessScale& b) {
+            return a.fitnessValue > b.fitnessValue;
+            });
     
+        cout << "Best fitness of Gen " << generationCounter << " : " << Solutions[0].fitnessValue << endl;
+        vector<fitnessScale>newGen;
+        for (int i = 0; i < 5; i++) {
+            newGen.push_back(Solutions[i]);
+        }
+        vector<vector<itemHolder>>newSolutions;
     
-    vector<fitnessScale>newGen;
-    for (int i = 0; i < 5; i++) {
-        newGen.push_back(Solutions[i]);
-    }
-    vector<vector<itemHolder>>newSolutions;
-    
-    while (newSolutions.size() < 5) {
-        int randomNumber = rand() % Solutions.size();
-        int randomNumber2 = rand() % Solutions.size();
+        while (newSolutions.size() < 5) {
+            int randomNumber = rand() % Solutions.size();
+            int randomNumber2 = rand() % Solutions.size();
         
-        if (Solutions[randomNumber].fitnessValue > Solutions[randomNumber2].fitnessValue) {
-            newSolutions.push_back(Solutions[randomNumber].storedItems);
-        }
-        else {
-            newSolutions.push_back(Solutions[randomNumber2].storedItems);
-        }
-
-    }
-
-
-
-    for (int i = 0; i < newSolutions.size(); i++) {
-        vector<itemHolder>::iterator it = newSolutions[i].begin();
-        while (it != newSolutions[i].end()) {
-            int randomNum = rand() % 100;
-            if (randomNum < 50) {
-                it->test1 -= 1;
-            }
-
-
-            if (it->test1==0) {
-                
-                it = newSolutions[i].erase(it);
+            if (Solutions[randomNumber].fitnessValue > Solutions[randomNumber2].fitnessValue) {
+                newSolutions.push_back(Solutions[randomNumber].storedItems);
             }
             else {
-                it++;
+                newSolutions.push_back(Solutions[randomNumber2].storedItems);
             }
+
         }
+    
+
+
+        for (int i = 0; i < newSolutions.size(); i++) {
+            vector<itemHolder>::iterator it = newSolutions[i].begin();
+            while (it != newSolutions[i].end()) {
+                int randomNum = rand() % 100;
+                if (randomNum < 50) {
+                    it->test1 -= 1;
+                }
+
+
+                if (it->test1==0) {
+                
+                    it = newSolutions[i].erase(it);
+                }
+                else {
+                    it++;
+                }
+            }
        
+        }
+    
+
+        for (int i = 0; i < newSolutions.size(); i++) {
+            int localElements[] = { 0,0,0,0,0,0 };
+            countElements(localElements, newSolutions[i]);
+            selectItems(reborns, localElements, newSolutions[i]);
+        }
+        for (int i = 0; i < newSolutions.size(); i++) {
+            newGen.push_back(fitnessScale{fitness(newSolutions[i]),newSolutions[i]});
+    
+    
+        }
+
+    
+        Solutions.clear();
+        Solutions = newGen;
+        newGen.clear();
+    
+
+        generationCounter += 1;
     }
-    
+   /* cout << "New solutions after modification: " << endl;
+    for (int i = 0; i < newSolutions.size(); i++) {
+        int localElements[] = { 0,0,0,0,0,0 };
+        countElements(localElements, newSolutions[i]);
+        cout << "Local elements of solution:" << i<< "- ";
+        for (int i = 0; i < 6; i++) {
+            cout << localElements[i] << " ";
+        }
+        cout << endl;
+        cout << "Item amount: " << countItems(newSolutions[i]) << endl;
+    }*/
 
-    
 
 
 
 
 
 
-
-
-
-
-    /*countElements(startElements, Solutions[0].storedItems);
+    countElements(startElements, Solutions[0].storedItems);
 
     for (int i = 0; i < Solutions[0].storedItems.size(); i++) {
         cout << Solutions[0].storedItems[i].test2->getName() << ": "<< Solutions[0].storedItems[i].test1<<" "<<endl;
@@ -268,7 +296,7 @@ int main()
         cout << startElements[i] << " ";
     }
     cout << endl<<"Items amount: " << countItems(Solutions[0].storedItems);
-    cout << endl<<"Fitness value of best solution: " << Solutions[0].fitnessValue << endl;*/
+    cout << endl<<"Fitness value of best solution: " << Solutions[0].fitnessValue << endl;
     
 }
 
