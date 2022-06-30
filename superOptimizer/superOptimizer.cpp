@@ -8,7 +8,9 @@
 #include <algorithm>
 #include <limits>
 
+
 using namespace std;
+
 
 
 
@@ -132,18 +134,7 @@ vector<itemHolder> selectItems(vector<items>& localreborns,int elementcount[]) {
         
     };
     
-    cout << endl;
-    /*int localAmount = 0;
-    cout << "Items stored: " << endl;
-    for (int i = 0; i < currentItems.size(); i++) {
-        cout << currentItems[i].test2->getName() << ": " << currentItems[i].test1 << endl;
-        localAmount += currentItems[i].test1;
-    }
-    cout << "Items needed: " << localAmount << endl;
-    cout << "Elements: ";
-    for (int i = 0; i < 6; i++) {
-        cout << currentElements[i] << " ";
-    }*/
+    
     return currentItems;
 }
 
@@ -156,8 +147,22 @@ int countItems(vector<itemHolder>& countableItems) {
 }
 
 
-int countElements(int element[],vector<itemHolder>&itemList) {
-    return 1;
+void countElements(int element[],vector<itemHolder>&itemList) {
+    
+    for (int i = 0; i < itemList.size(); i++) {
+    
+        for (int j = 0; j < itemList[i].test1; j++) {
+            
+            
+            for (int k = 0; k < 6; k++) {
+                element[k]+=*(itemList[i].test2->getElements()+k);
+            }
+        }
+        
+        
+    
+    }
+      
 }
 
 
@@ -182,54 +187,89 @@ int main()
     int startElements[] = { 0,0,0,0,0,0 };
     vector<itemHolder>finishedProduct;
     int localAmount = INT_MAX;
-    vector<fitnessScale>rankedSolution;
+    vector<fitnessScale>Solutions;
     
-    while (localAmount>35) {
+
+    while (Solutions.size()<10) {
+        
         finishedProduct = selectItems(reborns, startElements);
-        localAmount = countItems(finishedProduct);
-        cout << "items needed: " << localAmount << " and fitness: " << fitness(finishedProduct) << endl;
+        fitnessScale test{ fitness(finishedProduct),finishedProduct };
+        Solutions.push_back(test);
     }
-    fitnessScale test{fitness(finishedProduct),finishedProduct};
-    
-    cout <<"Test fitness value: " << test.fitnessValue << endl;
-    cout << test.storedItems[0].test2->getName() << endl;
-    cout << finishedProduct[0].test2->getName() << endl;
-
-
-
-    finishedProduct = selectItems(reborns, startElements);
-    fitnessScale test2{ fitness(finishedProduct),finishedProduct };
-    finishedProduct = selectItems(reborns, startElements);
-    fitnessScale test3{ fitness(finishedProduct),finishedProduct };
-
-
-    cout << test2.storedItems[0].test2->getName() << endl;
-    cout << test.storedItems[0].test2->getName() << endl;
     
 
-    rankedSolution.push_back(test);
-    rankedSolution.push_back(test2);
-    rankedSolution.push_back(test3);
-    cout << test3.storedItems[0].test2->getName() << endl;
 
-    sort(rankedSolution.begin(), rankedSolution.end(), [](const fitnessScale& a, const fitnessScale& b) {
+    sort(Solutions.begin(), Solutions.end(), [](const fitnessScale& a, const fitnessScale& b) {
         return a.fitnessValue > b.fitnessValue;
         });
-    cout << "Test value: " << rankedSolution[0].fitnessValue << endl;
-    cout << "Test value: " << rankedSolution[1].fitnessValue << endl;
-    cout << "Test value: " << rankedSolution[2].fitnessValue << endl;
-   /* for (int i = 0; i < finishedProduct.size(); i++) {
-        cout << finishedProduct[i].test2->getName() << ": " << finishedProduct[i].test1 << endl;
+    
+    
+    vector<fitnessScale>newGen;
+    for (int i = 0; i < 5; i++) {
+        newGen.push_back(Solutions[i]);
+    }
+    vector<vector<itemHolder>>newSolutions;
+    
+    while (newSolutions.size() < 5) {
+        int randomNumber = rand() % Solutions.size();
+        int randomNumber2 = rand() % Solutions.size();
         
-    }*/
+        if (Solutions[randomNumber].fitnessValue > Solutions[randomNumber2].fitnessValue) {
+            newSolutions.push_back(Solutions[randomNumber].storedItems);
+        }
+        else {
+            newSolutions.push_back(Solutions[randomNumber2].storedItems);
+        }
+
+    }
+
+
+
+    for (int i = 0; i < newSolutions.size(); i++) {
+        vector<itemHolder>::iterator it = newSolutions[i].begin();
+        while (it != newSolutions[i].end()) {
+            int randomNum = rand() % 100;
+            if (randomNum < 50) {
+                it->test1 -= 1;
+            }
+
+
+            if (it->test1==0) {
+                
+                it = newSolutions[i].erase(it);
+            }
+            else {
+                it++;
+            }
+        }
+       
+    }
+    
 
     
-    
-    // [fitness value, vector<itemHolder>]
-    //
 
-    
 
+
+
+
+
+
+
+
+
+    /*countElements(startElements, Solutions[0].storedItems);
+
+    for (int i = 0; i < Solutions[0].storedItems.size(); i++) {
+        cout << Solutions[0].storedItems[i].test2->getName() << ": "<< Solutions[0].storedItems[i].test1<<" "<<endl;
+        
+    }
+    cout << endl<<"start elements ";
+    for (int i = 0; i < 6; i++) {
+        cout << startElements[i] << " ";
+    }
+    cout << endl<<"Items amount: " << countItems(Solutions[0].storedItems);
+    cout << endl<<"Fitness value of best solution: " << Solutions[0].fitnessValue << endl;*/
+    
 }
 
 
