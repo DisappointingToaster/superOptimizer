@@ -1,94 +1,94 @@
-﻿ItemName;Air;Nature;Water;Order;Fire;Death
-Quantum Ore Cleaner;5;-2;2;3;0;0
-Frozen Justice;2;0;5;3;-2;0
-Massive Diamond Mine;0;5;0;2;3;-2
-Nature's grip;3;5;0;2;0;-2
-Dreamer's might;0;3;2;5;0;-2
-Dreamer's fright;0;3;0;-2;2;5
-Tesla resetter;5;0;-2;3;0;2
-Newtonium Mine;2;3;0;0;-2;5
-Ore illuminator;2;-2;0;5;0;3
-Flaming Schrodinger;0;2;-2;0;5;3
-Big Bad Blaster;2;0;-2;0;5;3
-Industrial firecrystal mine;0;3;-2;0;5;2
-Lightningbolt refiner;5;0;3;0;-2;2
-Dark magic;3;0;0;2;-2;5
-Righteous will;3;2;0;5;0;-2
-Big bertha;3;-2;0;2;0;5
-The catalyst;2;-2;0;3;5;0
-Atomium mine;-2;3;0;5;0;2
-Clockwork;3;-2;0;5;0;2
-Eternal journey;2;3;0;-2;0;5
-The fracture;2;3;0;-2;0;5
-Sage redeemer;0;2;5;3;-2;0
-Yunium mine;2;3;5;-2;0;0
-Solar flare;3;0;-2;2;5;0
-Gate of eclipse;2;0;0;3;-2;5
-Blind justice;0;3;0;5;-2;2
-Ancient temple;2;5;0;3;-2;0
-Wild spore;2;3;0;0;-2;5
-Scorpium mine;0;3;-2;0;5;2
-Azure refiner;0;5;3;2;-2;0
-Morning star;3;0;-2;0;5;2
-Symmetrium mine;0;3;5;2;-2;0
-Astral predicter;5;-2;3;2;0;0
-Breech loader;5;3;0;2;0;-2
-Aether refinery;5;2;0;3;0;-2
-Dreamer's anguish;0;3;0;-2;2;5
-Dragonglass mine;0;3;0;-2;2;5
-Sakura garden;2;4;3;0;-2;0
-Venomshank;0;3;2;-2;0;5
-Scorching heat;0;2;-2;0;5;3
-Guardian of the gate;0;3;0;5;-2;2
-Ambrosia garden;5;3;2;0;-2;0
-Pizza blaster;3;0;-2;2;5;0
-Daegelart;0;3;2;-2;0;5
-Pilotite mine;5;3;0;2;-2;0
-Red giant;3;0;-2;0;5;2
-Crystalized system;0;5;-2;3;2;0
-Gravitational gearwork;5;-2;0;3;2;0
-Plasma scanner;2;-2;9;9;5;3
-Toxic waste disposal;0;2;3;-2;0;5
-Shard park;2;5;-2;3;0;0
-Cooling chamber;5;-2;2;0;3;0
-Invasive cyberlord;2;0;-2;0;3;5
-Phase refiner;5;2;-2;3;0;0
-Phase processor;5;2;-2;3;0;0
-Newtonic corroder;0;3;2;0;-2;5
-Atlanatic monument;0;3;5;2;-2;0
-Mineral wheel;0;5;3;2;0;-2
-Green tea latte;0;3;5;0;-2;2
-Vortex chamber;5;-2;0;2;0;3
-Ore sawmill;2;0;0;3;-2;5
-Fractured reality;1;0;0;5;-2;3
-The Sporest;0;5;1;0;-2;3
-Desert Monument;0;3;-2;0;5;1
-Skyliner Flux;5;-2;0;3;0;0
-Nuclear Stronghold;2;0;3;0;2;5
-Industrial Scarab;0;2;3;0;-2;5
-Ore skillet;3;0;-2;2;5;0
-Sword god shrine;5;0;0;-5;3;10
-Dragon blaster;3;0;-5;0;10;5
-Northern lights;5;0;10;3;-5;0
-Precursor furnace;10;0;0;5;-5;3
-Precursor mine;10;0;0;5;-5;3
-Igneous Forge;0;5;-5;0;10;3
-Arcane Lightning;10;0;5;0;-5;3
-Vampire Spore;0;3;-5;0;5;10
-Virtual Enhancer;3;5;0;10;0;-5
-Nova Star;5;0;-5;0;10;3
-Crystal Shrine;-5;10;0;5;3;0
-Vulcan's Grasp;3;0;-5;5;10;0
-Hades' palace;0;0;-5;3;10;5
-Palladium mine;0;10;-5;0;3;5
-Black dwarf;5;3;0;0;-5;10
-Stardust pulsar;10;0;-5;0;5;3
-Blue supergiant;5;0;-5;0;10;3
-Frigid dystopia;3;0;19;0;-5;5
-Dreamer's blight;0;3;5;5;0;10
-Father of freon;5;0;10;0;-5;3
-Son of poison;-5;5;3;0;0;10
-Spirit of fire;3;0;-5;0;10;5
-Apollium mine;5;0;-5;0;10;3
-Railgun;3;0;-2;0;5;1
-Big Alberto;5;3;-5;0;0;10
+﻿ItemName;Air;Nature;Water;Order;Fire;Death;Rarity
+Quantum Ore Cleaner;5;-2;2;3;0;0;15
+Frozen Justice;2;0;5;3;-2;0;15
+Massive Diamond Mine;0;5;0;2;3;-2;15
+Nature's grip;3;5;0;2;0;-2;15
+Dreamer's might;0;3;2;5;0;-2;15
+Dreamer's fright;0;3;0;-2;2;5;18
+Tesla resetter;5;0;-2;3;0;2;18
+Newtonium Mine;2;3;0;0;-2;5;18
+Ore illuminator;2;-2;0;5;0;3;15
+Flaming Schrodinger;0;2;-2;0;5;3;16
+Big Bad Blaster;2;0;-2;0;5;3;18
+Industrial firecrystal mine;0;3;-2;0;5;2;15
+Lightningbolt refiner;5;0;3;0;-2;2;18
+Dark magic;3;0;0;2;-2;5;18
+Righteous will;3;2;0;5;0;-2;6
+Big bertha;3;-2;0;2;0;5;19
+The catalyst;2;-2;0;3;5;0;12
+Atomium mine;-2;3;0;5;0;2;12
+Clockwork;3;-2;0;5;0;2;8
+Eternal journey;2;3;0;-2;0;5;10
+The fracture;2;3;0;-2;0;5;4
+Sage redeemer;0;2;5;3;-2;0;15
+Yunium mine;2;3;5;-2;0;0;17
+Solar flare;3;0;-2;2;5;0;18
+Gate of eclipse;2;0;0;3;-2;5;15
+Blind justice;0;3;0;5;-2;2;7
+Ancient temple;2;5;0;3;-2;0;7
+Wild spore;2;3;0;0;-2;5;17
+Scorpium mine;0;3;-2;0;5;2;17
+Azure refiner;0;5;3;2;-2;0;15
+Morning star;3;0;-2;0;5;2;14
+Symmetrium mine;0;3;5;2;-2;0;10
+Astral predicter;5;-2;3;2;0;0;15
+Breech loader;5;3;0;2;0;-2;8
+Aether refinery;5;2;0;3;0;-2;5
+Dreamer's anguish;0;3;0;-2;2;5;3
+Dragonglass mine;0;3;0;-2;2;5;8
+Sakura garden;2;4;3;0;-2;0;3
+Venomshank;0;3;2;-2;0;5;3
+Scorching heat;0;2;-2;0;5;3;10
+Guardian of the gate;0;3;0;5;-2;2;5
+Ambrosia garden;5;3;2;0;-2;0;7
+Pizza blaster;3;0;-2;2;5;0;15
+The Abomination;0;3;2;-2;0;5;8
+Pilotite mine;5;3;0;2;-2;0;13
+Red giant;3;0;-2;0;5;2;14
+Crystalized system;0;5;-2;3;2;0;12
+Gravitational gearwork;5;-2;0;3;2;0;13
+Plasma scanner;2;-2;9;9;5;3;19
+Toxic waste disposal;0;2;3;-2;0;5;13
+Shard park;2;5;-2;3;0;0;9
+Cooling chamber;5;-2;2;0;3;0;8
+Invasive cyberlord;2;0;-2;0;3;5;10
+Phase refiner;5;2;-2;3;0;0;7
+Phase processor;5;2;-2;3;0;0;7
+Newtonic corroder;0;3;2;0;-2;5;10
+Atlantic monolith;0;3;5;2;-2;0;10
+Mineral wheel;0;5;3;2;0;-2;17
+Green tea latte;0;3;5;0;-2;2;10
+Vortex chamber;5;-2;0;2;0;3;15
+Ore sawmill;2;0;0;3;-2;5;10
+Fractured reality;1;0;0;5;-2;3;5
+The Sporest;0;5;1;0;-2;3;8
+Desert Monument;0;3;-2;0;5;1;1
+Skyliner Flux;5;-2;0;3;0;0;7
+Nuclear Stronghold;2;0;3;0;2;5;7
+Industrial Scarab;0;2;3;0;-2;5;3
+Ore skillet;3;0;-2;2;5;0;11
+Sword god shrine;5;0;0;-5;3;10;1
+Dragon blaster;3;0;-5;0;10;5;3
+Northern lights;5;0;10;3;-5;0;1
+Precursor furnace;10;0;0;5;-5;3;3
+Precursor mine;10;0;0;5;-5;3;3
+Igneous Forge;0;5;-5;0;10;3;3
+Arcane Lightning;10;0;5;0;-5;3;3
+Vampire Spore;0;3;-5;0;5;10;1
+Virtual Enhancer;3;5;0;10;0;-5;3
+Nova Star;5;0;-5;0;10;3;3
+Crystal Shrine;-5;10;0;5;3;0;1
+Vulcan's Grasp;3;0;-5;5;10;0;1
+Hades' palace;0;0;-5;3;10;5;3
+Palladium mine;0;10;-5;0;3;5;2
+Black dwarf;5;3;0;0;-5;10;3
+Stardust pulsar;10;0;-5;0;5;3;2
+Blue supergiant;5;0;-5;0;10;3;2
+Frigid dystopia;3;0;19;0;-5;5;3
+Dreamer's blight;0;3;5;5;0;10;2
+Father of freon;5;0;10;0;-5;3;2
+Son of poison;-5;5;3;0;0;10;2
+Spirit of fire;3;0;-5;0;10;5;2
+Apollium mine;5;0;-5;0;10;3;1
+Railgun;3;0;-2;0;5;1;2
+Big Alberto;5;3;-5;0;0;10;3

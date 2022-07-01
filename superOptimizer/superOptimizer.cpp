@@ -18,9 +18,10 @@ class items {
 private:
     string name;
     int elements[6];
+    int rarity;
 public:
     items(vector<string>&test) {
-        for (int i = 0; i < 7; i++) {
+        for (int i = 0; i < 8; i++) {
             if (i == 0) {
                 name = test[i];
             }
@@ -29,7 +30,13 @@ public:
                 stringstream ss;
                 ss << test[i];
                 ss >> localint;
-                elements[i-1] = localint;
+                if (i == 7) {
+                    rarity = localint;
+                }
+                else {
+                    elements[i - 1] = localint;
+                }
+                
             } 
         }
     }
@@ -38,6 +45,9 @@ public:
     }
     string getName() {
         return name;
+    }
+    int getRarity() {
+        return rarity;
     }
 };
 
@@ -59,7 +69,7 @@ vector<string> split(const string& s, char delim) {
 
 void createItemObjects(vector<items>& localItems) {
     ifstream myFile;
-    myFile.open("ItemElements2.csv");
+    myFile.open("ItemElements.csv");
     char desturctor = ';';
     vector<string>v;
     string line;
@@ -93,7 +103,7 @@ bool notEnoughItems( const int expectedElements[], int currentEl[]) {
     return false;
 }
 
-const int SuperReq[6] = { 35,40,0,5,125,55 };
+const int SuperReq[6] = { 200,50,50,200,50,100 };
 
 void selectItems(vector<items>& localreborns,int elementcount[], vector<itemHolder>&currentItems) {
     int currentElements[6];
@@ -165,10 +175,27 @@ void countElements(int element[],vector<itemHolder>&itemList) {
       
 }
 
+double countRarities(vector<itemHolder>& countableItems) {
+    int itemRarity = 0;
+    for (int i = 0; i < countableItems.size(); i++) {
+        itemRarity += countableItems[i].test2->getRarity();
+    }
+    return itemRarity;
+}
+
+
+
 
 double fitness(vector<itemHolder>& localItems) {
-    return (1 / (double)(countItems(localItems))*100);
+      
+    return(
+        pow((1 / (double)(countItems(localItems))), 1) *
+        pow(countRarities(localItems), 2)) *
+        pow((1 / (double)localItems.size()), 3);
 }
+
+
+
 
 struct fitnessScale {
 
@@ -177,6 +204,10 @@ struct fitnessScale {
 
 };
 
+
+
+int SolutionSize=100;
+int GenerationAmount = 100000;
 int main()
 {
 
@@ -189,8 +220,9 @@ int main()
     int localAmount = INT_MAX;
     vector<fitnessScale>Solutions;
     
+    
 
-    while (Solutions.size()<10) {
+    while (Solutions.size()< SolutionSize) {
         
         selectItems(reborns, startElements, finishedProduct);
         fitnessScale test{ fitness(finishedProduct),finishedProduct };
@@ -199,7 +231,7 @@ int main()
     }
     int generationCounter = 0;
 
-    while(generationCounter<20000){
+    while(generationCounter< GenerationAmount){
 
         sort(Solutions.begin(), Solutions.end(), [](const fitnessScale& a, const fitnessScale& b) {
             return a.fitnessValue > b.fitnessValue;
@@ -212,7 +244,7 @@ int main()
         }
         vector<vector<itemHolder>>newSolutions;
     
-        while (newSolutions.size() < 5) {
+        while (newSolutions.size() < SolutionSize-5) {
             int randomNumber = rand() % Solutions.size();
             int randomNumber2 = rand() % Solutions.size();
         
